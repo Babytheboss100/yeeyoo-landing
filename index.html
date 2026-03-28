@@ -72,13 +72,13 @@ body{
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:16px 0;
+  padding:8px 0;
   background:rgba(5,7,20,.8);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:all .3s;
 }
-.nav-inner{display:flex;align-items:center;gap:32px}
+.nav-inner{display:flex;align-items:center;gap:32px;height:100%}
 .nav-logo{
   display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;
 }
@@ -130,7 +130,7 @@ nav{
 
 /* ── HERO ── */
 .hero{
-  padding:160px 0 80px;
+  padding:140px 0 80px;
   display:grid;grid-template-columns:1fr 1fr;
   gap:60px;align-items:center;
 }
@@ -457,8 +457,15 @@ footer{
   <div class="wrap">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <div class="nav-logo-mark">Y</div>
-        <div class="nav-logo-text">Yeeyoo</div>
+        <svg height="36" viewBox="0 0 160 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4f7fff"/>
+              <stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+          <text y="28" font-family="Impact, Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#lg)" letter-spacing="3">YEEYOO</text>
+        </svg>
       </a>
       <div class="nav-links">
         <a href="#features" data-no="Funksjoner" data-en="Features">Funksjoner</a>
@@ -507,7 +514,7 @@ footer{
       </div>
     </div>
 
-    <div class="hero-visual">
+    <div class="hero-visual" style="display:flex;align-items:center;justify-content:center;position:relative">
       <div class="float-card float-card-1">
         <div class="fc-num">+312%</div>
         <div class="fc-label" data-no="Rekkevidde økt" data-en="Reach increased">Rekkevidde økt</div>
@@ -516,6 +523,7 @@ footer{
         <div class="fc-num">247</div>
         <div class="fc-label" data-no="Poster publisert" data-en="Posts published">Poster publisert</div>
       </div>
+
       <div class="dashboard-mockup">
         <div class="dash-header">
           <div class="dash-dots">
@@ -599,7 +607,7 @@ footer{
       <div class="feature-card fade-up" style="transition-delay:.2s">
         <div class="feat-icon">📋</div>
         <div class="feat-h" data-no="Godkjenningskø" data-en="Approval queue">Godkjenningskø</div>
-        <p class="feat-p" data-no="Rediger, godkjenn eller avvis generert innhold før publisering. Full kontroll over stemmen din." data-en="Edit, approve or reject generated content before publishing. Full control over your voice.">Rediger, godkjenn eller avvis generert innhold før publisering. Full kontroll over stemmen din.</p>
+        <p class="feat-p" data-no="AI-generert innhold — ha full oversikt over alle prosessene på en enkel måte." data-en="AI-generated content — get full oversight of all processes in a simple way.">AI-generert innhold — ha full oversikt over alle prosessene på en enkel måte.</p>
         <div class="feat-tag" data-no="Arbeidsflyt" data-en="Workflow">Arbeidsflyt</div>
       </div>
       <div class="feature-card fade-up" style="transition-delay:.3s">
