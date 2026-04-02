@@ -534,7 +534,12 @@ footer{
         <a href="#pricing" data-no="Priser" data-en="Pricing">Priser</a>
       </div>
       <div class="nav-cta">
-        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+        <select class="lang-btn" id="langSel" onchange="setLandingLang(this.value)" style="appearance:auto;padding-right:20px">
+          <option value="no">🇳🇴 NO</option>
+          <option value="en">🇬🇧 EN</option>
+          <option value="es">🇪🇸 ES</option>
+          <option value="pt">🇧🇷 PT</option>
+        </select>
         <a href="https://app.yeeyoo.no" class="btn-ghost" data-no="Logg inn" data-en="Log in">Logg inn</a>
         <a href="https://app.yeeyoo.no" class="btn-primary" data-no="Start gratis →" data-en="Start free →">Start gratis →</a>
       </div>
@@ -848,18 +853,62 @@ window.addEventListener('scroll', () => {
     : 'rgba(5,7,20,.8)'
 })
 
-// Language toggle
-let currentLang = 'no'
-function toggleLang() {
-  currentLang = currentLang === 'no' ? 'en' : 'no'
-  const btn = document.getElementById('langBtn')
-  btn.textContent = currentLang === 'no' ? 'EN' : 'NO'
-  btn.classList.toggle('active-en', currentLang === 'en')
+// Language — 4 languages
+let currentLang = localStorage.getItem('yeeyoo_landing_lang') || 'no'
+
+// ES/PT translations mapped from NO text
+const LANDING_TR = {
+  es: {
+    'Funksjoner':'Características','Slik fungerer det':'Cómo funciona','Priser':'Precios',
+    'Logg inn':'Iniciar sesión','Start gratis →':'Empezar gratis →',
+    'Lag din egen AI agent for markedsføringen din':'Crea tu propio agente IA para marketing',
+    'AI-optimalisert markedsføring.':'Marketing optimizado por IA.',
+    'Presist. Skalerbart. Lønnsomt.':'Preciso. Escalable. Rentable.',
+    'Fra data til vekst — optimalisert og automatisert i én plattform.':'De datos a crecimiento — optimizado y automatizado en una plataforma.',
+    'Kom i gang →':'Empezar →','Se demo':'Ver demo',
+    'Innholdsmaler':'Plantillas','AI-modeller':'Modelos IA','Per innlegg':'Por publicación',
+    'Rekkevidde økt':'Alcance aumentado','Poster publisert':'Posts publicados',
+    'Generert':'Generado','Godkjent':'Aprobado','Publisert':'Publicado',
+    'Klar til å automatisere<br>markedsføringen din?':'¿Listo para automatizar<br>tu marketing?',
+    'Fra data til vekst — én plattform, full kontroll.':'De datos a crecimiento — una plataforma, control total.',
+    'Se alle funksjoner':'Ver todas las funciones',
+  },
+  pt: {
+    'Funksjoner':'Recursos','Slik fungerer det':'Como funciona','Priser':'Preços',
+    'Logg inn':'Entrar','Start gratis →':'Começar grátis →',
+    'Lag din egen AI agent for markedsføringen din':'Crie seu próprio agente IA para marketing',
+    'AI-optimalisert markedsføring.':'Marketing otimizado por IA.',
+    'Presist. Skalerbart. Lønnsomt.':'Preciso. Escalável. Lucrativo.',
+    'Fra data til vekst — optimalisert og automatisert i én plattform.':'De dados a crescimento — otimizado e automatizado em uma plataforma.',
+    'Kom i gang →':'Começar →','Se demo':'Ver demo',
+    'Innholdsmaler':'Modelos','AI-modeller':'Modelos IA','Per innlegg':'Por post',
+    'Rekkevidde økt':'Alcance aumentado','Poster publisert':'Posts publicados',
+    'Generert':'Gerado','Godkjent':'Aprovado','Publisert':'Publicado',
+    'Klar til å automatisere<br>markedsføringen din?':'Pronto para automatizar<br>seu marketing?',
+    'Fra data til vekst — én plattform, full kontroll.':'De dados a crescimento — uma plataforma, controle total.',
+    'Se alle funksjoner':'Ver todos os recursos',
+  }
+}
+
+function setLandingLang(lang) {
+  currentLang = lang
+  localStorage.setItem('yeeyoo_landing_lang', lang)
   document.querySelectorAll('[data-no][data-en]').forEach(el => {
-    const text = el.dataset[currentLang]
-    if (text) el.innerHTML = text
+    if (lang === 'no' || lang === 'en') {
+      el.innerHTML = el.dataset[lang]
+    } else {
+      // For ES/PT: translate from NO text
+      const noText = el.dataset.no
+      el.innerHTML = LANDING_TR[lang]?.[noText] || el.dataset.en || noText
+    }
   })
-  if(typeof gtag==='function')gtag('event','language_switch',{language:currentLang})
+  if(typeof gtag==='function') gtag('event','language_switch',{language:lang})
+}
+
+// Apply saved language on load
+if (currentLang !== 'no') {
+  document.getElementById('langSel').value = currentLang
+  setLandingLang(currentLang)
 }
 
 // GA4 event tracking — CTA clicks
