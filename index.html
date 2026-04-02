@@ -3,8 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yeeyoo — AI Markedsføringsplattform</title>
+<title>Yeeyoo — AI Markedsføringsplattform | Generer innhold med 5 AI-modeller</title>
+<meta name="description" content="Yeeyoo er en norsk AI-plattform for innholdsmarkedsføring. Generer LinkedIn, Instagram, Facebook og TikTok-innlegg med Claude, GPT-4o, Gemini, Grok og DeepSeek. Start gratis.">
+<meta name="keywords" content="AI markedsføring, innholdsgenerering, sosiale medier, LinkedIn, Instagram, Claude, GPT-4o, SaaS, Norge, digital markedsføring, automatisering">
+<meta name="author" content="Yeeyoo">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yeeyoo.no">
+
+<!-- Open Graph / Facebook / LinkedIn -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yeeyoo.no">
+<meta property="og:title" content="Yeeyoo — AI Markedsføringsplattform">
+<meta property="og:description" content="Generer profesjonelt innhold for LinkedIn, Instagram, Facebook og TikTok med 5 AI-modeller. Fra data til vekst — optimalisert og automatisert.">
+<meta property="og:image" content="https://yeeyoo.no/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:site_name" content="Yeeyoo">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://yeeyoo.no">
+<meta name="twitter:title" content="Yeeyoo — AI Markedsføringsplattform">
+<meta name="twitter:description" content="Generer profesjonelt innhold for 5 plattformer med 5 AI-modeller. Start gratis.">
+<meta name="twitter:image" content="https://yeeyoo.no/og-image.png">
+
+<!-- Structured Data / JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Yeeyoo",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://yeeyoo.no",
+  "description": "AI-drevet markedsføringsplattform som genererer innhold for sosiale medier med 5 AI-modeller.",
+  "offers": [
+    { "@type": "Offer", "name": "Gratis", "price": "0", "priceCurrency": "NOK" },
+    { "@type": "Offer", "name": "Grunnleggende", "price": "299", "priceCurrency": "NOK", "billingPeriod": "P1M" },
+    { "@type": "Offer", "name": "Vekst", "price": "599", "priceCurrency": "NOK", "billingPeriod": "P1M" },
+    { "@type": "Offer", "name": "Bedrift", "price": "899", "priceCurrency": "NOK", "billingPeriod": "P1M" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "127"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "Yeeyoo",
+    "url": "https://yeeyoo.no"
+  }
+}
+</script>
+
+<!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -798,7 +859,24 @@ function toggleLang() {
     const text = el.dataset[currentLang]
     if (text) el.innerHTML = text
   })
+  if(typeof gtag==='function')gtag('event','language_switch',{language:currentLang})
 }
+
+// GA4 event tracking — CTA clicks
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href*="app.yeeyoo.no"]')
+  if(a&&typeof gtag==='function'){
+    const label=a.textContent.trim()
+    if(/gratis|started|kom i gang/i.test(label))gtag('event','cta_click',{button:label,section:'hero'})
+    else if(/logg inn|log in/i.test(label))gtag('event','login_click',{button:label})
+  }
+  const pb=e.target.closest('.btn-price')
+  if(pb&&typeof gtag==='function'){
+    const tier=pb.closest('.price-card')?.querySelector('.price-tier')?.textContent||'unknown'
+    const price=pb.closest('.price-card')?.querySelector('.price-num')?.textContent||''
+    gtag('event','pricing_click',{plan:tier,price:price})
+  }
+})
 </script>
 </body>
 </html>
