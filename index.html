@@ -132,7 +132,7 @@ body{
 
 /* ── NAV ── */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:36px;left:0;right:0;z-index:100;
   padding:8px 0;
   background:rgba(5,7,20,.8);
   backdrop-filter:blur(20px);
@@ -501,8 +501,44 @@ footer{
   .nav-links{display:none}
 }
 </style>
+<style>
+.live-banner{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:36px;display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(90deg,rgba(5,7,20,.95),rgba(12,17,48,.95));
+  border-bottom:1px solid rgba(124,58,237,.3);
+  font-family:var(--font);font-size:13px;font-weight:600;color:var(--white);
+  overflow:hidden;
+}
+.live-dot{
+  width:8px;height:8px;border-radius:50%;background:#ef4444;
+  box-shadow:0 0 8px #ef4444,0 0 16px rgba(239,68,68,.4);
+  animation:livePulse 1.5s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.live-tag{
+  font-size:10px;font-weight:800;letter-spacing:1.5px;
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+  color:#fff;padding:2px 8px;border-radius:4px;
+  text-transform:uppercase;flex-shrink:0;
+}
+.live-text{
+  display:inline-block;white-space:nowrap;
+  animation:liveFade 6s ease-in-out infinite;
+}
+@keyframes liveFade{0%,40%{opacity:1}45%,55%{opacity:0}60%,100%{opacity:1}}
+.live-text-2{animation-delay:3s}
+</style>
 </head>
 <body>
+
+<!-- LIVE BANNER -->
+<div class="live-banner" id="liveBanner">
+  <div class="live-dot"></div>
+  <span class="live-tag">LIVE</span>
+  <span class="live-text" id="liveText" style="transition:opacity .4s">🇧🇷 Now live in Brasil!</span>
+</div>
 
 <div class="bg-layer">
   <div class="bg-grid"></div>
@@ -910,6 +946,20 @@ if (currentLang !== 'no') {
   document.getElementById('langSel').value = currentLang
   setLandingLang(currentLang)
 }
+
+// LIVE banner text cycling
+const liveMessages = ['🇧🇷 Now live in Brasil!', '🇳🇴 Now live in Norway!', '🇪🇸 Ahora en vivo en España!', '🌍 AI marketing for everyone']
+let liveIdx = 0
+setInterval(() => {
+  const el = document.getElementById('liveText')
+  if (!el) return
+  el.style.opacity = '0'
+  setTimeout(() => {
+    liveIdx = (liveIdx + 1) % liveMessages.length
+    el.textContent = liveMessages[liveIdx]
+    el.style.opacity = '1'
+  }, 400)
+}, 3000)
 
 // GA4 event tracking — CTA clicks
 document.addEventListener('click',e=>{
