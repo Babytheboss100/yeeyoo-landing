@@ -249,8 +249,7 @@ nav{
   gap:60px;align-items:center;
   position:relative;overflow:hidden;
 }
-.hero>*{position:relative;z-index:1;}
-#heroNet{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+#heroNet{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);
@@ -643,6 +642,7 @@ footer{
 </style>
 </head>
 <body>
+<canvas id="heroNet"></canvas>
 
 <!-- LIVE BANNER -->
 <div class="live-banner" id="liveBanner">
@@ -697,7 +697,6 @@ footer{
 <!-- HERO -->
 <div class="wrap">
   <div class="hero">
-    <canvas id="heroNet"></canvas>
     <div>
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-dot"></div>
@@ -1142,9 +1141,8 @@ document.addEventListener('click',e=>{
   var nodes=[];
 
   function resize(){
-    var rect=c.parentElement.getBoundingClientRect();
-    W=c.width=rect.width;
-    H=c.height=rect.height;
+    W=c.width=window.innerWidth;
+    H=c.height=window.innerHeight;
   }
 
   function Node(){
