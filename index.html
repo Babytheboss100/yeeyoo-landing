@@ -158,7 +158,7 @@ body{
 
 /* ── ANIMATED BG ── */
 .bg-layer{
-  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
 }
 .bg-layer::before{
   content:'';position:absolute;inset:0;
@@ -645,6 +645,12 @@ footer{
 <canvas id="heroNet"></canvas>
 
 <!-- LIVE BANNER -->
+<div class="live-banner" id="liveBanner">
+  <div class="live-dot"></div>
+  <span class="live-tag">LIVE</span>
+  <span class="live-text">Ny: AI SEO-analyse er live — prøv gratis i dag!</span>
+</div>
+
 <div class="bg-layer">
   <div class="bg-grid"></div>
   <div class="orb orb1"></div>
