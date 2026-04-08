@@ -547,6 +547,13 @@ footer{
 .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 
+/* ── HAMBURGER ── */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;margin-left:auto}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
 /* ── TABLET ── */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding-top:120px}
@@ -559,6 +566,22 @@ footer{
   .nav-cta{margin-left:auto}
   .hero-stats{flex-wrap:wrap}
   .hero-stat{min-width:33%}
+}
+
+@media(max-width:768px){
+  .nav-logo img{height:60px !important}
+  .hamburger{display:block}
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .nav-cta{gap:6px}
+  .mobile-menu{
+    display:none;position:fixed;top:106px;left:0;right:0;
+    background:rgba(5,7,20,.95);backdrop-filter:blur(20px);
+    padding:20px;border-bottom:1px solid var(--border);
+    flex-direction:column;gap:16px;z-index:99;
+  }
+  .mobile-menu.active{display:flex}
+  .mobile-menu a{color:var(--muted);font-size:16px;font-weight:500;text-decoration:none;padding:8px 0}
+  .mobile-menu a:hover{color:var(--white)}
 }
 
 /* ── MOBILE ── */
@@ -683,9 +706,18 @@ footer{
         <a href="https://app.yeeyoo.no" class="btn-ghost" data-no="Logg inn" data-en="Log in">Logg inn</a>
         <a href="https://app.yeeyoo.no" class="btn-primary" data-no="Start gratis →" data-en="Start free →">Start gratis →</a>
       </div>
+      <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active');this.classList.toggle('active')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+<div class="mobile-menu">
+  <a href="#features" data-no="Funksjoner" data-en="Features">Funksjoner</a>
+  <a href="#how" data-no="Slik fungerer det" data-en="How it works">Slik fungerer det</a>
+  <a href="#pricing" data-no="Priser" data-en="Pricing">Priser</a>
+  <a href="https://app.yeeyoo.no" data-no="Logg inn" data-en="Log in">Logg inn</a>
+</div>
 
 <!-- HERO -->
 <div class="wrap">
