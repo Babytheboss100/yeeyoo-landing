@@ -186,13 +186,14 @@ body{
 /* ── NAV ── */
 nav{
   position:fixed;top:36px;left:0;right:0;z-index:100;
-  padding:8px 0;
+  height:70px;
   background:rgba(5,7,20,.8);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:all .3s;
+  display:flex;align-items:center;
 }
-.nav-inner{display:flex;align-items:center;gap:32px;height:100%}
+.nav-inner{display:flex;align-items:center;gap:32px;height:100%;width:100%}
 .nav-logo{
   display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;
 }
@@ -665,7 +666,7 @@ footer{
   <div class="wrap">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="logo.png" style="height:80px;object-fit:contain;filter:brightness(1.2)" alt="Yeeyoo">
+        <img src="logo.png" style="height:60px;width:160px;object-fit:contain;filter:brightness(1.2);margin:0;padding:0;display:block" alt="Yeeyoo">
       </a>
       <div class="nav-links">
         <a href="#features" data-no="Funksjoner" data-en="Features">Funksjoner</a>
