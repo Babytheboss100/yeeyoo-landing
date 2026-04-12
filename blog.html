@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeeyoo Blogg - AI-drevet markedsforing for norske bedrifter</title>
+<meta name="description" content="Les siste nytt om AI-markedsforing, sosiale medier og innholdsstrategi for norske bedrifter. Yeeyoo bloggen gir deg praktiske tips og innsikt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050714;
+  --navy2:#080c1e;
+  --navy3:#0c1130;
+  --card:rgba(255,255,255,.06);
+  --card2:rgba(255,255,255,.10);
+  --border:rgba(255,255,255,.09);
+  --border2:rgba(255,255,255,.17);
+  --blue:#2d5be3;
+  --blue2:#4f7fff;
+  --purple:#7c3aed;
+  --purple2:#a855f7;
+  --cyan:#06b6d4;
+  --white:#f0f4ff;
+  --muted:#9baacf;
+  --muted2:#5a6690;
+  --font:'Plus Jakarta Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:8px; --r2:12px;
+}
+html,body{
+  min-height:100%;
+  background:var(--navy);
+  color:var(--white);
+  font-family:var(--font);font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 1000px 700px at 100% 0%,rgba(124,58,237,.15),transparent 60%),
+    radial-gradient(ellipse 700px 600px at 0% 80%,rgba(45,91,227,.12),transparent 55%),
+    radial-gradient(ellipse 500px 400px at 50% 50%,rgba(6,182,212,.05),transparent 50%);
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+*{position:relative;z-index:1}
+a{color:var(--blue2);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{max-width:800px;margin:0 auto;padding:40px 20px}
+
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:50px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:14px;font-weight:700;color:#fff;
+  box-shadow:0 0 16px rgba(124,58,237,.4);
+}
+.logo-text{font-size:20px;font-weight:800;color:var(--white);letter-spacing:-.5px}
+.logo-text span{background:linear-gradient(90deg,var(--blue2),var(--purple2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.back-link{font-size:13px;font-weight:600;color:var(--muted);border:1px solid var(--border2);padding:8px 18px;border-radius:var(--r);transition:all .15s}
+.back-link:hover{background:var(--card);text-decoration:none;color:var(--white)}
+
+.page-title{font-size:36px;font-weight:800;text-align:center;margin-bottom:8px}
+.page-title span{background:linear-gradient(90deg,var(--blue2),var(--purple2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.page-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:48px}
+
+.article{
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+  margin-bottom:24px;
+  transition:border-color .2s, transform .2s;
+}
+.article:hover{border-color:var(--border2);transform:translateY(-2px)}
+.article-tag{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;margin-bottom:14px;
+}
+.tag-ai{background:rgba(124,58,237,.15);color:var(--purple2)}
+.tag-social{background:rgba(45,91,227,.15);color:var(--blue2)}
+.tag-seo{background:rgba(6,182,212,.15);color:var(--cyan)}
+.tag-strategi{background:rgba(74,222,128,.12);color:#4ade80}
+.tag-trend{background:rgba(251,191,36,.12);color:#fbbf24}
+
+.article-title{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;line-height:1.3}
+.article-meta{font-size:12px;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.article-intro{color:var(--muted);font-size:14px;line-height:1.7}
+
+.footer{text-align:center;padding:40px 0 30px;border-top:1px solid var(--border);margin-top:40px;color:var(--muted2);font-size:12px}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">
+      <div class="logo-mark">Y</div>
+      <div class="logo-text"><span>Yeeyoo</span> Blogg</div>
+    </div>
+    <a href="index.html" class="back-link">Tilbake til app</a>
+  </div>
+
+  <h1 class="page-title">Innsikt og <span>tips</span></h1>
+  <p class="page-sub">Praktiske artikler om AI-markedsforing, sosiale medier og innholdsstrategi for norske bedrifter.</p>
+
+  <!-- Article 1 -->
+  <article class="article">
+    <div class="article-tag tag-ai">AI</div>
+    <h2 class="article-title">Slik bruker du AI til a lage innhold som faktisk konverterer</h2>
+    <div class="article-meta">
+      <span>10. april 2026</span>
+      <span>5 min lesetid</span>
+    </div>
+    <p class="article-intro">
+      Kunstig intelligens har revolusjonert maten vi lager markedsforingsinnhold pa. Men det holder ikke a bare generere tekst - du ma vite hvordan du bruker AI som et strategisk verktoy. I denne artikkelen ser vi pa hvordan norske bedrifter kan bruke AI-verktoy som Yeeyoo til a lage innhold som engasjerer, bygger tillit og driver konverteringer. Vi dekker alt fra prompt-teknikker til hvordan du tilpasser AI-generert innhold for ulike plattformer, og deler konkrete eksempler fra bedrifter som har okt engasjementet sitt med over 300% ved hjelp av AI-assistert innholdsproduksjon.
+    </p>
+  </article>
+
+  <!-- Article 2 -->
+  <article class="article">
+    <div class="article-tag tag-social">Sosiale medier</div>
+    <h2 class="article-title">LinkedIn-strategien som tredoblet rekkevidde for norske B2B-bedrifter</h2>
+    <div class="article-meta">
+      <span>7. april 2026</span>
+      <span>7 min lesetid</span>
+    </div>
+    <p class="article-intro">
+      LinkedIn er den viktigste plattformen for B2B-markedsforing i Norge, men mange bedrifter sliter med a na ut til riktig malggruppe. Vi har analysert over 500 LinkedIn-innlegg fra norske bedrifter og funnet en tydelig formel som fungerer. Nokkelene er konsistens, personlig stemme og strategisk bruk av hashtags. I denne guiden larer du hvordan du planlegger en LinkedIn-kalender, hvilke innholdstyper som far mest engasjement, og hvordan AI kan hjelpe deg med a produsere kvalitetsinnhold uten a bruke timer pa skriving hver uke.
+    </p>
+  </article>
+
+  <!-- Article 3 -->
+  <article class="article">
+    <div class="article-tag tag-seo">SEO</div>
+    <h2 class="article-title">SEO i 2026: 7 trender norske bedrifter ma kjenne til</h2>
+    <div class="article-meta">
+      <span>3. april 2026</span>
+      <span>6 min lesetid</span>
+    </div>
+    <p class="article-intro">
+      Sokeoptimalisering endrer seg raskere enn noensinne, spesielt med AI-drevne sokeresultater. For norske bedrifter betyr dette nye muligheter - men ogsa nye utfordringer. I denne artikkelen gjennomgar vi de syv viktigste SEO-trendene for 2026, inkludert AI-oversikter i Google, fokus pa E-E-A-T for norskspraklig innhold, lokal SEO-optimalisering, og hvordan du kan bruke strukturerte data for a skille deg ut. Vi gir deg en konkret sjekkliste du kan folge for a sikre at nettsiden din er klar for fremtidens sokemotorer.
+    </p>
+  </article>
+
+  <!-- Article 4 -->
+  <article class="article">
+    <div class="article-tag tag-strategi">Strategi</div>
+    <h2 class="article-title">Innholdskalender for smaabedrifter: Lag en plan som faktisk fungerer</h2>
+    <div class="article-meta">
+      <span>28. mars 2026</span>
+      <span>8 min lesetid</span>
+    </div>
+    <p class="article-intro">
+      De fleste smaabedrifter vet at de burde vaere aktive pa sosiale medier, men mangler en konkret plan. Resultatet blir sporadiske innlegg uten strategi. En god innholdskalender loser dette problemet. I denne artikkelen viser vi deg steg for steg hvordan du lager en innholdskalender som er realistisk, effektiv og enkel a folge. Du larer hvordan du fordeler innhold pa tvers av plattformer, finner den optimale publiseringsfrekvensen for din bransje, og hvordan verktoy som Yeeyoo kan automatisere store deler av prosessen slik at du sparer opptil 10 timer i uken.
+    </p>
+  </article>
+
+  <!-- Article 5 -->
+  <article class="article">
+    <div class="article-tag tag-trend">Trender</div>
+    <h2 class="article-title">Fremtiden til markedsforing: Hvorfor norske bedrifter ma omfavne AI na</h2>
+    <div class="article-meta">
+      <span>22. mars 2026</span>
+      <span>6 min lesetid</span>
+    </div>
+    <p class="article-intro">
+      Ifolge en fersk undersokelse fra NHO bruker bare 23% av norske smaabedrifter AI-verktoy i markedsforingen sin. De som gjor det, rapporterer i gjennomsnitt 40% lavere kostnader og 2,5 ganger hoyere engasjement. Gapet mellom tidlige brukere og de som venter vokser raskt. I denne artikkelen utforsker vi hvorfor AI-adopsjon i markedsforing ikke lenger er valgfritt, hvilke konkrete verktoy som gir mest verdi for norske bedrifter, og hvordan du kan komme i gang uten teknisk kompetanse eller stort budsjett.
+    </p>
+  </article>
+
+  <div class="footer">
+    &copy; 2026 Yeeyoo. Alle rettigheter reservert. &mdash; <a href="index.html">Tilbake til appen</a>
+  </div>
+
+</div>
+
+</body>
+</html>
