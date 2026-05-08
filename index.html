@@ -1126,19 +1126,7 @@ if (currentLang !== 'no') {
   setLandingLang(currentLang)
 }
 
-// LIVE banner text cycling
-const liveMessages = ['🇧🇷 Now live in Brasil — 224 million inhabitants!', '🇳🇴 Now live in Norway!', '🇪🇸 Ahora en vivo en España!', '🌍 AI marketing for everyone']
-let liveIdx = 0
-setInterval(() => {
-  const el = document.getElementById('liveText')
-  if (!el) return
-  el.style.opacity = '0'
-  setTimeout(() => {
-    liveIdx = (liveIdx + 1) % liveMessages.length
-    el.textContent = liveMessages[liveIdx]
-    el.style.opacity = '1'
-  }, 400)
-}, 3000)
+// LIVE banner cycler lever i en separat <script>-blokk nederst (EN/PT 4s).
 
 // GA4 event tracking — CTA clicks
 document.addEventListener('click',e=>{
