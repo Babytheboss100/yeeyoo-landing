@@ -671,8 +671,10 @@ footer{
 <!-- LIVE BANNER -->
 <div class="live-banner" id="liveBanner">
   <div class="live-dot"></div>
-  <span class="live-tag">LIVE</span>
-  <span class="live-text">Ny: AI SEO-analyse er live — prøv gratis i dag!</span>
+  <div id="liveContent" style="display:flex;align-items:center;gap:10px;min-width:28rem;justify-content:center;transition:opacity 400ms ease">
+    <span class="live-tag" id="liveTag">LIVE</span>
+    <span class="live-text" id="liveText" style="animation:none">Now live in Brazil 🇧🇷 — 224 million people</span>
+  </div>
 </div>
 
 <div class="bg-layer">
@@ -1275,6 +1277,31 @@ document.addEventListener('click',e=>{
   init();
   draw();
   window.addEventListener('resize',function(){resize();});
+})();
+</script>
+
+<script>
+// Bilingual LIVE banner — cycles EN/PT every 4s with 400ms fade.
+// Tag + text fade together as one unit (parent wrapper opacity).
+(function(){
+  var STATES = [
+    { tag: 'LIVE',    text: 'Now live in Brazil 🇧🇷 — 224 million people' },
+    { tag: 'AO VIVO', text: 'Agora ao vivo no Brasil 🇧🇷 — 224 milhões de pessoas' }
+  ];
+  var content = document.getElementById('liveContent');
+  var tag = document.getElementById('liveTag');
+  var text = document.getElementById('liveText');
+  if(!content || !tag || !text) return;
+  var idx = 0;
+  setInterval(function(){
+    content.style.opacity = '0';
+    setTimeout(function(){
+      idx = (idx + 1) % STATES.length;
+      tag.textContent  = STATES[idx].tag;
+      text.textContent = STATES[idx].text;
+      content.style.opacity = '1';
+    }, 400);
+  }, 4000);
 })();
 </script>
 </body>
