@@ -246,10 +246,11 @@ nav{
 /* ── HERO ── */
 .hero{
   padding:140px 0 80px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:60px;align-items:center;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
   position:relative;overflow:hidden;
 }
+.hero > div{width:100%;display:flex;flex-direction:column;align-items:center}
 #heroNet{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -269,14 +270,15 @@ nav{
 }
 .hero-sub{
   font-size:18px;color:var(--muted);line-height:1.6;
-  margin-bottom:36px;max-width:480px;
+  margin:0 auto 36px;max-width:600px;
 }
-.hero-btns{display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.hero-btns{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:48px}
 .hero-stats{
   display:flex;gap:0;
   background:var(--card);
   border:1px solid var(--border2);
   border-radius:12px;overflow:hidden;
+  width:100%;max-width:600px;align-self:center;
 }
 .hero-stat{
   flex:1;padding:16px 20px;text-align:center;
@@ -375,6 +377,127 @@ nav{
 @keyframes floatCard2{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
 .fc-num{font-size:22px;font-weight:800;color:var(--white)}
 .fc-label{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* ── SMART PLANLEGGER / TONY AI TEASER ── */
+@property --smartplan-rot{
+  syntax:'<angle>';
+  inherits:false;
+  initial-value:0deg;
+}
+.smartplan-title{
+  font-family:var(--font);
+  font-size:32px;font-weight:800;
+  letter-spacing:-.8px;line-height:1.15;
+  text-align:center;
+  margin:0 auto 14px;
+  background:linear-gradient(90deg,#4f7fff,#a855f7);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;color:transparent;
+}
+.smartplan-subtitle{
+  font-family:var(--font);
+  font-size:16px;font-weight:400;line-height:1.55;
+  color:rgba(255,255,255,.7);
+  text-align:center;
+  max-width:600px;
+  margin:0 auto 24px;
+}
+.smartplan-teaser{
+  position:relative;
+  max-width:700px;
+  margin:8px auto 40px;
+  padding:22px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 32px rgba(0,0,0,.25),0 0 30px rgba(124,58,237,.08);
+}
+.smartplan-teaser::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:conic-gradient(from var(--smartplan-rot),
+    rgba(79,127,255,.55),
+    rgba(168,85,247,.65),
+    rgba(6,182,212,.45),
+    rgba(168,85,247,.65),
+    rgba(79,127,255,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+          mask-composite:exclude;
+  pointer-events:none;
+  animation:smartplanRotate 6s linear infinite;
+}
+@keyframes smartplanRotate{
+  to{--smartplan-rot:360deg}
+}
+.smartplan-row{
+  display:flex;gap:10px;align-items:stretch;
+  transition:opacity .25s ease;
+}
+.smartplan-input{
+  flex:1;min-width:0;
+  padding:13px 16px;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  font-family:var(--font);font-size:14px;color:var(--white);
+  outline:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.smartplan-input::placeholder{color:var(--muted)}
+.smartplan-input:focus{
+  border-color:rgba(124,58,237,.5);
+  background:rgba(255,255,255,.06);
+  box-shadow:0 0 0 3px rgba(124,58,237,.12);
+}
+.smartplan-btn{
+  padding:13px 24px;
+  border:none;border-radius:10px;
+  background:linear-gradient(135deg,#4f7fff,#a855f7);
+  color:#fff;font-family:var(--font);font-size:14px;font-weight:700;
+  cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .25s;
+  white-space:nowrap;
+  box-shadow:0 0 24px rgba(124,58,237,.3);
+}
+.smartplan-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 28px rgba(124,58,237,.5);
+}
+.smartplan-btn:active{transform:translateY(0)}
+.smartplan-teaser.is-sent .smartplan-btn{
+  opacity:0;visibility:hidden;width:0;padding:0;margin:0;border:0;
+}
+.smartplan-teaser.is-sent .smartplan-input{
+  cursor:default;pointer-events:none;opacity:.6;
+}
+.smartplan-msg{
+  margin-top:14px;
+  text-align:center;
+  font-family:var(--font);
+  font-size:14px;font-weight:600;
+  background:linear-gradient(90deg,#4f7fff,#a855f7);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;color:transparent;
+  opacity:0;
+  transition:opacity .3s ease;
+  min-height:20px;
+}
+.smartplan-msg.visible{opacity:1}
+@media(max-width:600px){
+  .smartplan-title{font-size:26px;letter-spacing:-.5px}
+  .smartplan-subtitle{font-size:14px}
+  .smartplan-teaser{padding:18px;border-radius:14px}
+  .smartplan-row{flex-direction:column;gap:10px}
+  .smartplan-btn{width:100%;padding:13px 20px}
+  .smartplan-teaser.is-sent .smartplan-btn{height:0;padding:0}
+}
 
 /* ── LOGOS / SOCIAL PROOF ── */
 .logos-section{
@@ -734,6 +857,18 @@ footer{
         <span class="grad" data-no="Presist. Skalerbart. Lønnsomt." data-en="Precise. Scalable. Profitable.">Presist. Skalerbart. Lønnsomt.</span>
       </h1>
       <p class="hero-sub" data-no="Fra data til vekst — optimalisert og automatisert i én plattform." data-en="From data to growth — optimised and automated in one platform.">Fra data til vekst — optimalisert og automatisert i én plattform.</p>
+
+      <!-- Smart Planlegger / Tony AI teaser -->
+      <h2 class="smartplan-title" data-no="Tony AI — Auto Marketing" data-en="Tony AI — Auto Marketing">Tony AI — Auto Marketing</h2>
+      <p class="smartplan-subtitle" data-no="Skriv inn nettsiden din — våre 5 AI-modeller analyserer selskapet ditt, bygger en komplett markedsføringsstrategi og genererer alle innleggene dine automatisk." data-en="Enter your website — our 5 AI models analyse your company, build a complete marketing strategy and generate all your posts automatically.">Skriv inn nettsiden din — våre 5 AI-modeller analyserer selskapet ditt, bygger en komplett markedsføringsstrategi og genererer alle innleggene dine automatisk.</p>
+      <form class="smartplan-teaser" id="smartplanTeaser" novalidate>
+        <div class="smartplan-row">
+          <input type="text" class="smartplan-input" id="smartplanInput" placeholder="https://dittselskap.no" autocomplete="off" aria-label="Nettside">
+          <button type="submit" class="smartplan-btn" id="smartplanBtn" data-no="Analyser →" data-en="Analyze →">Analyser →</button>
+        </div>
+        <div class="smartplan-msg" id="smartplanMsg" role="status" aria-live="polite" data-no="Lanseres innen veldig kort tid 🚀" data-en="Launches very soon 🚀">Lanseres innen veldig kort tid 🚀</div>
+      </form>
+
       <div class="hero-btns">
         <a href="https://app.yeeyoo.no" class="btn-primary btn-primary-lg" data-no="Kom i gang →" data-en="Get started →">Kom i gang →</a>
         <a href="#how" class="btn-ghost" style="padding:14px 28px;font-size:16px" data-no="Se demo" data-en="Watch demo">Se demo</a>
@@ -754,58 +889,6 @@ footer{
       </div>
     </div>
 
-    <div class="hero-visual" style="display:flex;align-items:center;justify-content:center;position:relative">
-      <div class="float-card float-card-1">
-        <div class="fc-num">+312%</div>
-        <div class="fc-label" data-no="Rekkevidde økt" data-en="Reach increased">Rekkevidde økt</div>
-      </div>
-      <div class="float-card float-card-2">
-        <div class="fc-num">247</div>
-        <div class="fc-label" data-no="Poster publisert" data-en="Posts published">Poster publisert</div>
-      </div>
-
-      <div class="dashboard-mockup">
-        <div class="dash-header">
-          <div class="dash-dots">
-            <div class="dash-dot"></div><div class="dash-dot"></div><div class="dash-dot"></div>
-          </div>
-          <div class="dash-title">Yeeyoo — Din bedrift</div>
-        </div>
-        <div class="dash-metrics">
-          <div class="dash-metric">
-            <div class="dm-label" data-no="Generert" data-en="Generated">Generert</div>
-            <div class="dm-val blue">124</div>
-            <div class="dm-change">↑ +18 i dag</div>
-          </div>
-          <div class="dash-metric">
-            <div class="dm-label" data-no="Godkjent" data-en="Approved">Godkjent</div>
-            <div class="dm-val purple">89</div>
-            <div class="dm-change">↑ 72%</div>
-          </div>
-          <div class="dash-metric">
-            <div class="dm-label" data-no="Publisert" data-en="Published">Publisert</div>
-            <div class="dm-val cyan">61</div>
-            <div class="dm-change">↑ +5 i dag</div>
-          </div>
-        </div>
-        <div class="dash-queue-title" data-no="Innholdskø" data-en="Content queue">Innholdskø</div>
-        <div class="dash-post">
-          <div class="post-platform-dot li"></div>
-          <div class="post-text">Our new product is live — try it free for 30 days...</div>
-          <div class="post-status ps-approved" data-no="GODKJENT" data-en="APPROVED">GODKJENT</div>
-        </div>
-        <div class="dash-post">
-          <div class="post-platform-dot ig"></div>
-          <div class="post-text">🚀 Big milestone — 10,000 customers served. Thank you!</div>
-          <div class="post-status ps-pending" data-no="VENTER" data-en="PENDING">VENTER</div>
-        </div>
-        <div class="dash-post">
-          <div class="post-platform-dot fb"></div>
-          <div class="post-text">Here's what our customers say about us...</div>
-          <div class="post-status ps-published" data-no="PUBLISERT" data-en="PUBLISHED">PUBLISERT</div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1290,6 +1373,23 @@ document.addEventListener('click',e=>{
       content.style.opacity = '1';
     }, 400);
   }, 4000);
+})();
+</script>
+
+<script>
+// Smart Planlegger / Tony AI teaser — kosmetisk, ingen backend-kall.
+(function(){
+  var form = document.getElementById('smartplanTeaser');
+  var msg  = document.getElementById('smartplanMsg');
+  if(!form || !msg) return;
+  function reveal(e){
+    if(e) e.preventDefault();
+    if(form.classList.contains('is-sent')) return;
+    form.classList.add('is-sent');
+    requestAnimationFrame(function(){ msg.classList.add('visible'); });
+    if(typeof gtag==='function') gtag('event','smartplan_teaser_click',{section:'hero'});
+  }
+  form.addEventListener('submit', reveal);
 })();
 </script>
 </body>
